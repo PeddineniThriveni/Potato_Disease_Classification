@@ -1,0 +1,9 @@
+# Ignore virtual environments
+Api/myenv/
+training/me_env/
+# Ignore training datasets
+training/PlantVillage/
+#Ignore Saved_models
+Saved_models/1/
+Saved_models/2/
+Saved_models/3/

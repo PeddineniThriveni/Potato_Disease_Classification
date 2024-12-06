@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Potato Disease Classification</h1>
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*" required />
+        <button type="submit">Upload and Predict</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const apiUrl = "/predict"; // Your FastAPI endpoint
+
+        document.getElementById("uploadForm").addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form from refreshing the page
+            
+            const imageInput = document.getElementById("imageInput");
+            const file = imageInput.files[0];
+
+            if (!file) {
+                alert("Please select an image to upload.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                document.getElementById("result").innerText = 
+                    `Class: ${data.class}\nConfidence: ${data.prediction.toFixed(2)}`;
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("result").innerText = "An error occurred while predicting.";
+            }
+        });
+    </script>
+</body>
+</html>
