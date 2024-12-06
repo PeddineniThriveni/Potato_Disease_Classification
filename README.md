@@ -12,7 +12,7 @@ FastAPI as the backend server.
 - Backend server developed with FastAPI.
 - User-friendly web interface.
 - **Tech stack
-- - **Frontend**: HTML, CSS, JavaScript
+-  **Frontend**: HTML, CSS, JavaScript
 - **Backend**: FastAPI
 - **Machine Learning**: Convolutional Neural Networks (CNN) using TensorFlow/Keras
 
