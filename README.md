@@ -11,3 +11,9 @@ FastAPI as the backend server.
 - Built using a CNN model for classification.
 - Backend server developed with FastAPI.
 - User-friendly web interface.
+- **Tech stack
+- - **Frontend**: HTML, CSS, JavaScript
+- **Backend**: FastAPI
+- **Machine Learning**: Convolutional Neural Networks (CNN) using TensorFlow/Keras
+
+
